@@ -24,10 +24,17 @@ tools = [duckduckgo_tool, wikipedia_tool, sql_query_toolkit, weather_tool, trans
 memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
 
 # Define the prompt for the primary agent
-qa_system_prompt = """You are a helpful assistant. You can use the following tools: DuckDuckGo for internet searches, Wikipedia for finding information from Wikipedia, sql_query_toolkit for querying a database, 
+qa_system_prompt = """You are a helpful assistant. 
+
+Determine whether you want to answer the query on your own or use a tool. If you choose to answer on your own, provide the response directly.
+
+If you choose to use a tool, call the appropriate one. 
+
+You can use the following tools: DuckDuckGo for internet searches, Wikipedia for finding information from Wikipedia, sql_query_toolkit for querying a database, 
 weather_tool to get current weather data or forecasts, and translate_text_tool for translation or not use any of these tools at all.
 Determine whether a tool should be used or not based on the query.
 When dealing with weather reports, display and filter the information the user specifically wants.
+
 """
 
 qa_prompt = ChatPromptTemplate.from_messages(

@@ -9,8 +9,8 @@ from config import OPENAI_API_KEY
 
 filter_llm = ChatOpenAI(temperature=0, api_key=OPENAI_API_KEY)
 
-def filter_response(original_response: str, filter_instructions: str) -> str:
-    filter_prompt = f"Given the response: '{original_response}', refine the content based on the following instruction: '{filter_instructions}'."
+def filter_response(original_response: str , query:str) -> str:
+    filter_prompt = f"Given the response: '{original_response}', refine & filter the content and answer based on user query {query}'."
     response_message = filter_llm.invoke([{"role": "system", "content": filter_prompt}])
     
     # Access the content directly from the AIMessage object
